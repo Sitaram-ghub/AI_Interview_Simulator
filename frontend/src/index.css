@@ -1,0 +1,315 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-dark-900 text-white font-sans antialiased;
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 25%),
+      radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15), transparent 25%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    transition: background-color 0.35s ease, color 0.35s ease;
+  }
+
+  /* ===== LIGHT THEME ===== */
+  body.light {
+    background-color: #f1f5f9;
+    color: #1e293b;
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.06), transparent 25%),
+      radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.06), transparent 25%);
+  }
+}
+
+@layer components {
+  /* ===== GLASS PANEL (main containers) ===== */
+  .glass-panel {
+    @apply bg-dark-800/40 backdrop-blur-md border border-white/10 shadow-xl rounded-2xl;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-panel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Disable hover lift on navbar and sticky elements */
+  nav.glass-panel:hover,
+  .glass-panel[style*="transform: none"]:hover {
+    transform: none;
+  }
+
+  body.light .glass-panel {
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+    color: #1e293b;
+  }
+
+  /* ===== GLASS CARD (stat cards etc.) ===== */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-lg rounded-xl;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 40px rgba(59, 130, 246, 0.2), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  body.light .glass-card {
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    color: #1e293b;
+  }
+
+  body.light .glass-card:hover {
+    background-color: #f8fafc;
+    border-color: #94a3b8;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(59, 130, 246, 0.08);
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  /* ===== BUTTONS ===== */
+  .btn-primary {
+    @apply px-6 py-3 rounded-lg bg-gradient-to-r from-primary-600 to-accent-500 text-white font-medium transition-all duration-300;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+  }
+
+  .btn-primary:hover {
+    @apply from-primary-500 to-accent-400;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.6), 0 8px 20px rgba(59, 130, 246, 0.3);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  body.light .btn-primary {
+    color: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  }
+
+  body.light .btn-primary:hover {
+    box-shadow: 0 4px 16px rgba(139, 92, 246, 0.4);
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-lg bg-white/10 border border-white/20 text-white font-medium transition-all duration-300;
+  }
+
+  .btn-secondary:hover {
+    @apply bg-white/20;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  body.light .btn-secondary {
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #334155;
+  }
+
+  body.light .btn-secondary:hover {
+    background-color: #e2e8f0;
+  }
+
+  /* ===== INPUT FIELDS ===== */
+  .input-field {
+    @apply w-full px-4 py-3 bg-dark-900/50 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-all duration-300;
+  }
+
+  .input-field:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2), 0 0 15px rgba(59, 130, 246, 0.1);
+  }
+
+  body.light .input-field {
+    background-color: #ffffff;
+    border-color: #cbd5e1;
+    color: #1e293b;
+  }
+
+  body.light .input-field::placeholder {
+    color: #94a3b8;
+  }
+
+  body.light .input-field:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  /* ===== SELECT / DROPDOWN ===== */
+  body.light select.input-field {
+    background-color: #ffffff;
+    color: #1e293b;
+  }
+
+  body.light select option {
+    background-color: #ffffff;
+    color: #1e293b;
+  }
+
+  /* ===== NAVBAR ===== */
+  body.light nav.glass-panel {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    border-color: #e2e8f0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  }
+
+  /* ===== TEXT COLOR OVERRIDES ===== */
+  body.light .text-white { color: #0f172a; }
+  body.light .text-gray-200 { color: #1e293b; }
+  body.light .text-gray-300 { color: #334155; }
+  body.light .text-gray-400 { color: #475569; }
+  body.light .text-gray-500 { color: #64748b; }
+  body.light .text-gray-600 { color: #475569; }
+
+  /* Keep gradient text visible in light mode */
+  body.light .bg-clip-text.text-transparent {
+    color: transparent !important;
+  }
+
+  /* Navbar brand text fix */
+  body.light .bg-gradient-to-r.from-white.to-gray-400 {
+    --tw-gradient-from: #1e293b;
+    --tw-gradient-to: #64748b;
+  }
+
+  /* ===== BACKGROUND UTILITY OVERRIDES ===== */
+  body.light .bg-dark-900\/50,
+  body.light .bg-dark-900\/30 {
+    background-color: #f8fafc;
+  }
+
+  body.light .bg-dark-800 {
+    background-color: #f1f5f9;
+  }
+
+  body.light .bg-dark-700 {
+    background-color: #e2e8f0;
+  }
+
+  /* ===== BORDER OVERRIDES ===== */
+  body.light .border-white\/10,
+  body.light .border-white\/5,
+  body.light .border-white\/20 {
+    border-color: #e2e8f0;
+  }
+
+  /* ===== SKILL TAGS ===== */
+  body.light .bg-primary-500\/20 {
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+
+  body.light .text-primary-300 {
+    color: #2563eb;
+  }
+
+  /* ===== HOVER OVERRIDES ===== */
+  body.light .hover\:bg-white\/10:hover {
+    background-color: #f1f5f9;
+  }
+
+  body.light .hover\:text-white:hover {
+    color: #0f172a;
+  }
+
+  /* ===== PROGRESS BAR AREA ===== */
+  body.light .bg-dark-800.w-full {
+    background-color: #e2e8f0;
+  }
+
+  /* ===== GLOW EFFECTS (soften in light mode) ===== */
+  body.light .bg-primary-600\/20,
+  body.light .bg-accent-500\/20 {
+    opacity: 0.3;
+  }
+
+  /* ===== RECHARTS / DASHBOARD ===== */
+  body.light .glass-panel .recharts-cartesian-grid line {
+    stroke: #e2e8f0;
+  }
+
+  /* ===== FEEDBACK PANEL ===== */
+  body.light .border-t.border-white\/10 {
+    border-color: #e2e8f0;
+  }
+
+  body.light .border-b.border-white\/10 {
+    border-color: #e2e8f0;
+  }
+
+  /* ===== CAMPAIGN ROOM ===== */
+  body.light .border-yellow-500\/30 {
+    border-color: #f59e0b;
+  }
+
+  body.light .border-emerald-500\/30 {
+    border-color: #10b981;
+  }
+
+  body.light .border-rose-500\/30 {
+    border-color: #f43f5e;
+  }
+
+  /* Transparent bg areas */
+  body.light .bg-white\/5 {
+    background-color: rgba(241, 245, 249, 0.8);
+  }
+
+  body.light .bg-white\/10 {
+    background-color: rgba(226, 232, 240, 0.6);
+  }
+}
+
+/* ===== SCROLLBAR - Dark ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 1);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.5);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.8);
+}
+
+/* ===== SCROLLBAR - Light ===== */
+body.light::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+body.light::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.25);
+}
+body.light::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.5);
+}
+
+/* ===== MOBILE BOTTOM NAVBAR - Light ===== */
+body.light .bg-dark-900\/95 {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-top-color: #e2e8f0;
+}
+
+body.light .text-gray-500 {
+  color: #64748b;
+}
+
+/* ===== FOOTER - Light ===== */
+body.light footer {
+  border-top-color: #e2e8f0;
+}

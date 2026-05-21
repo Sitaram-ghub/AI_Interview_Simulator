@@ -1,0 +1,100 @@
+# ==============================================================================
+# 🎙️ AI Interviewer - Master GitIgnore Configuration
+# Supports: Node/Vite (Frontend), Python/FastAPI (Backend), MongoDB, & IDEs
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Dependencies & Package Managers
+# ------------------------------------------------------------------------------
+node_modules/
+jspm_packages/
+web_modules/
+.npm/
+.eslintcache
+package-lock.json
+
+# ------------------------------------------------------------------------------
+# Python & Virtual Environments
+# ------------------------------------------------------------------------------
+venv/
+.venv/
+env/
+ENV/
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+pip-log.txt
+pip-delete-this-directory.txt
+poetry.lock
+Pipfile.lock
+
+# ------------------------------------------------------------------------------
+# Build & Compiled Output
+# ------------------------------------------------------------------------------
+dist/
+build/
+out/
+bin/
+obj/
+.vite/
+.parcel-cache/
+.turbo/
+.next/
+
+# ------------------------------------------------------------------------------
+# Sensitive Configurations & Environments (API Keys & Secret Keys)
+# ------------------------------------------------------------------------------
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+*.pem
+*.key
+*.cert
+*.pfx
+
+# ------------------------------------------------------------------------------
+# System & OS Files
+# ------------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ------------------------------------------------------------------------------
+# IDEs & Editor Configurations
+# ------------------------------------------------------------------------------
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+.sublimetext/
+
+# ------------------------------------------------------------------------------
+# Log Files & Caching
+# ------------------------------------------------------------------------------
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+backend.log

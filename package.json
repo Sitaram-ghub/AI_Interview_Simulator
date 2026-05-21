@@ -1,0 +1,13 @@
+{
+  "name": "ai-interview-simulator",
+  "version": "1.0.0",
+  "description": "AI Interview Simulator - Full Stack",
+  "scripts": {
+    "dev": "concurrently --names \"BACKEND,FRONTEND\" --prefix-colors \"yellow,cyan\" \"cd backend && .\\venv\\Scripts\\activate && uvicorn app.main:app --reload\" \"cd frontend && npm run dev\"",
+    "backend": "cd backend && .\\venv\\Scripts\\activate && uvicorn app.main:app --reload",
+    "frontend": "cd frontend && npm run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
