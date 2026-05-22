@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import useInterviewStore from '../store/interviewStore';
 import { Loader2, Mic, MicOff, Volume2, Video, Trophy, TrendingUp, AlertTriangle, CheckCircle2, Award, Activity, Sparkles, ChevronRight, BookOpen } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config/api';
 import * as faceapi from '@vladmandic/face-api/dist/face-api.esm.js';
 
 // Top-level helpers for AI Smart-Cam Emotion Optimization
@@ -503,7 +504,7 @@ const InterviewRoom = () => {
         } else {
           // User wrote something: evaluate normally
           try {
-            const response = await axios.post('http://localhost:8000/api/interview/evaluate', {
+            const response = await axios.post(`${API_BASE_URL}/api/interview/evaluate`, {
               question_text: questions[currentQuestionIndex].text,
               answer: answer,
               hint_used: hintUsed
@@ -645,7 +646,7 @@ const InterviewRoom = () => {
     
     try {
       const cameraAnalysis = calculateQuestionEmotions();
-      const response = await axios.post('http://localhost:8000/api/interview/evaluate', {
+      const response = await axios.post(`${API_BASE_URL}/api/interview/evaluate`, {
         question_text: currentQuestion.text,
         answer: answerText,
         hint_used: hintUsed
@@ -696,7 +697,7 @@ const InterviewRoom = () => {
     
     setIsHintLoading(true);
     try {
-      const response = await axios.post('http://localhost:8000/api/interview/hint', {
+      const response = await axios.post(`${API_BASE_URL}/api/interview/hint`, {
         question_text: currentQuestion.text
       });
       setHint(response.data.hint);

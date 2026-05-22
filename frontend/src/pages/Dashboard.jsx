@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Loader2 } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config/api';
 import useAuthStore from '../store/authStore';
 
 const Dashboard = () => {
@@ -14,7 +15,7 @@ const Dashboard = () => {
     const fetchStats = async () => {
       try {
         const userId = user?.email || 'guest_user';
-        const response = await axios.get(`http://localhost:8000/api/interview/stats?user_id=${userId}`);
+        const response = await axios.get(`${API_BASE_URL}/api/interview/stats?user_id=${userId}`);
         setStats(response.data);
       } catch (error) {
         console.error("Failed to fetch dashboard stats:", error);

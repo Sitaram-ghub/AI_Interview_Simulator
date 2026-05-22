@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Loader2, ChevronDown, Tag, Timer } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { API_BASE_URL } from '../config/api';
 
 const ROLES = [
   "Frontend Developer",
@@ -86,7 +87,7 @@ const CampaignSetup = () => {
         
         if (cleanGithubUsername) {
           try {
-            const ghResponse = await axios.get(`http://localhost:8000/api/interview/github/${cleanGithubUsername}`);
+            const ghResponse = await axios.get(`${API_BASE_URL}/api/interview/github/${cleanGithubUsername}`);
             if (ghResponse.data && ghResponse.data.projects_summary) {
               githubProjects = ghResponse.data.projects_summary;
             }

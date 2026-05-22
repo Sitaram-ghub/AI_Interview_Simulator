@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Mail, Lock, User, Loader2, Eye, EyeOff } from 'lucide-react';
 import useAuthStore from '../store/authStore';
 import axios from 'axios';
+import { API_BASE_URL } from '../config/api';
 
 const LoginModal = ({ isOpen, onClose }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -23,7 +24,7 @@ const LoginModal = ({ isOpen, onClose }) => {
         ? { email: formData.email, password: formData.password }
         : formData;
 
-      const response = await axios.post(`http://localhost:8000${endpoint}`, payload);
+      const response = await axios.post(`${API_BASE_URL}${endpoint}`, payload);
       
       if (response.data.token || response.data.message === "User registered successfully") {
         login({ email: formData.email }, response.data.token || 'fake-jwt-token');

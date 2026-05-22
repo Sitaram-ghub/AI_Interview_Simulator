@@ -4,6 +4,7 @@ import useAuthStore from '../store/authStore';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config/api';
 import { Video, Eye, Smile } from 'lucide-react';
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 
@@ -146,7 +147,7 @@ const Reports = () => {
     const saveReport = async () => {
       if (evaluations.length > 0 && interviewId && !isSaved) {
         try {
-          await axios.post('http://localhost:8000/api/interview/save', {
+          await axios.post(`${API_BASE_URL}/api/interview/save`, {
             user_id: user?.email || "guest_user",
             interview_id: interviewId,
             role: role || "Unknown Role",

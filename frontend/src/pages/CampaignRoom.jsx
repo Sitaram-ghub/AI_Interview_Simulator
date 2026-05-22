@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { API_BASE_URL } from '../config/api';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mic, MicOff, Loader2, Volume2, Video, ShieldAlert, CheckCircle2, Trophy, ArrowRight, AlertTriangle } from 'lucide-react';
 import * as faceapi from '@vladmandic/face-api/dist/face-api.esm.js';
@@ -293,7 +294,7 @@ const CampaignRoom = () => {
         } else {
           // User wrote something: evaluate normally
           try {
-            const response = await axios.post('http://localhost:8000/api/interview/evaluate', {
+            const response = await axios.post(`${API_BASE_URL}/api/interview/evaluate`, {
               question_text: questions[currentQIndex].text,
               answer: answer,
               hint_used: hintUsed
@@ -529,7 +530,7 @@ const CampaignRoom = () => {
     setIsLoading(true);
     setRoundState('loading');
     try {
-      const response = await axios.post('http://localhost:8000/api/interview/generate', {
+      const response = await axios.post(`${API_BASE_URL}/api/interview/generate`, {
         role: setupParams.role,
         experience: setupParams.experience,
         skills: setupParams.skillsList,
@@ -591,7 +592,7 @@ const CampaignRoom = () => {
 
     try {
       const cameraAnalysis = calculateQuestionEmotions();
-      const response = await axios.post('http://localhost:8000/api/interview/evaluate', {
+      const response = await axios.post(`${API_BASE_URL}/api/interview/evaluate`, {
         question_text: questions[currentQIndex].text,
         answer: answerText,
         hint_used: hintUsed
@@ -646,7 +647,7 @@ const CampaignRoom = () => {
     
     setIsHintLoading(true);
     try {
-      const response = await axios.post('http://localhost:8000/api/interview/hint', {
+      const response = await axios.post(`${API_BASE_URL}/api/interview/hint`, {
         question_text: questions[currentQIndex].text
       });
       setHint(response.data.hint);

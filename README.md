@@ -21,7 +21,7 @@ Building this platform came with a few tricky engineering hurdles that standard 
 
 ### 1. The "Always Neutral" Resting Face Bias
 When running `@vladmandic/face-api` client-side, the raw neural models returned `neutral` expressions with $95\% - 99\%$ confidence during normal resting states. This completely flattened the analytics chart, rendering the emotion tracker useless.
-* **The Fix**: I implemented a custom behavior-aware scaling filter. I damped the neutral baseline ($\text{neutral} \times 0.18$) to let active cues shine, and introduced a non-linear smile booster ($\text{happy} \times 5.0$ when above a subtle $0.03$ threshold). I then synchronized this with the microphone state so that if a candidate smiles while speaking, the engagement metric gets an extra $1.3\times$ boost.
+* **The Fix**: I implemented a custom behavior-aware scaling filter. I damped the neutral baseline (`neutral * 0.18`) to let active cues shine, and introduced a non-linear smile booster (`happy * 5.0` when above a subtle `0.03` threshold). I then synchronized this with the microphone state so that if a candidate smiles while speaking, the engagement metric gets an extra `1.3x` boost.
 
 ### 2. Preventing "Ghost Score" Bloating
 Initially, if a candidate didn't say anything within the timer window, the browser's speech engine would time out. The frontend would submit a blank string, which the LLM evaluator would grade as having "Perfect 100% Grammar" and "100% Fluency" because there were no errors in an empty response.

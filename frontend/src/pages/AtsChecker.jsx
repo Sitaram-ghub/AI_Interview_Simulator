@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Upload, CheckCircle, Loader2, ChevronDown, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { API_BASE_URL } from '../config/api';
 
 const ROLES = [
   "Frontend Developer",
@@ -62,7 +63,7 @@ const AtsChecker = () => {
       formData.append('file', file);
       formData.append('target_role', role);
       
-      const resumeResponse = await axios.post('http://localhost:8000/api/resume/analyze', formData);
+      const resumeResponse = await axios.post(`${API_BASE_URL}/api/resume/analyze`, formData);
       
       setAtsResult(resumeResponse.data);
     } catch (err) {
