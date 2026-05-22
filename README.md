@@ -150,6 +150,12 @@ AI-INTERVIEWER/
 * **💻 In-Browser Whiteboarding**: Add system design canvas drawings and real-time coding challenges.
 * **🌐 Local offline LLM execution**: Allow running evaluation steps using local models (like Llama Edge/Ollama) to reduce external API dependency entirely.
 
+## 👥 Developed By
+
+* **Sitaram Kumar**
+  * GitHub: [@Sitaram-ghub](https://github.com/Sitaram-ghub)
+  * Email: sitaramkumar2004@gmail.com
+
 ---
 
 ## ⚖️ License
