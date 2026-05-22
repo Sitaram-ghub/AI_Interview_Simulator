@@ -152,7 +152,7 @@ AI-INTERVIEWER/
 
 ## 👥 Developed By
 
-* **Sitaram Kumar**
+* **Sitaram**
   * GitHub: [@Sitaram-ghub](https://github.com/Sitaram-ghub)
   * Email: sitaramkumar2004@gmail.com
 
