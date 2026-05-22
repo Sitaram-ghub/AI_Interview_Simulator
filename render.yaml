@@ -1,0 +1,31 @@
+services:
+  # 1. FastAPI Python Backend (Web Service)
+  - type: web
+    name: ai-interview-backend
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ALLOWED_ORIGINS
+        value: "*"
+      - key: MONGODB_URL
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+
+  # 2. React Vite Frontend (Static Site)
+  - type: web
+    name: ai-interview-frontend
+    env: static
+    rootDir: frontend
+    buildCommand: npm run build
+    publishDir: dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          name: ai-interview-backend
+          type: web
+          property: host
