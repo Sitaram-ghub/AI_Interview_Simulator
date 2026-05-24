@@ -158,17 +158,32 @@ async def get_dashboard_stats(user_id: str = "guest_user"):
     metric_counts = {"technical": 0, "communication": 0, "confidence": 0, "grammar": 0, "fluency": 0}
     
     for i, doc in enumerate(history_docs):
+        created_at = doc.get("created_at")
+        date_str = ""
+        if created_at:
+            if hasattr(created_at, "strftime"):
+                date_str = created_at.strftime("%Y-%m-%d")
+            else:
+                date_str = str(created_at)[:10]
+
         history_data.append({
             "name": f"Int {i+1}", 
-            "score": doc.get("average_score", 0),
-            "role": doc.get("role", "Unknown"),
-            "date": doc.get("created_at").strftime("%Y-%m-%d") if doc.get("created_at") else ""
+            "score": doc.get("average_score") or 0,
+            "role": doc.get("role") or "Unknown",
+            "date": date_str
         })
         
         # Aggregate metrics
-        evals = doc.get("evaluations", [])
+        evals = doc.get("evaluations")
+        if not isinstance(evals, list):
+            evals = []
+            
         for ev in evals:
-            metrics = ev.get("metrics", {})
+            if not isinstance(ev, dict):
+                continue
+            metrics = ev.get("metrics")
+            if not isinstance(metrics, dict):
+                continue
             for k in metric_totals.keys():
                 if k in metrics and isinstance(metrics[k], (int, float)):
                     metric_totals[k] += metrics[k]
@@ -189,7 +204,7 @@ async def get_dashboard_stats(user_id: str = "guest_user"):
     
     if result:
         stats = result[0]
-        user_avg = stats["average_score"]
+        user_avg = stats.get("average_score") or 0
         
         # Calculate percentile
         all_users_pipeline = [
@@ -198,12 +213,12 @@ async def get_dashboard_stats(user_id: str = "guest_user"):
         all_users_cursor = db["interviews"].aggregate(all_users_pipeline)
         all_users = await all_users_cursor.to_list(length=10000)
         
-        lower_scores = sum(1 for u in all_users if u["avg"] < user_avg)
+        lower_scores = sum(1 for u in all_users if (u.get("avg") or 0) < user_avg)
         total_users = len(all_users)
         percentile = (lower_scores / max(1, total_users)) * 100 if total_users > 1 else 100
         
         return {
-            "total_interviews": stats["total_interviews"],
+            "total_interviews": stats.get("total_interviews") or 0,
             "average_score": round(user_avg),
             "strengths": top_skills_str,
             "history": history_data,
