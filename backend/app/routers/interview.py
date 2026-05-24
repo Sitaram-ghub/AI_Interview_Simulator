@@ -170,7 +170,7 @@ async def get_dashboard_stats(user_id: str = "guest_user"):
         for ev in evals:
             metrics = ev.get("metrics", {})
             for k in metric_totals.keys():
-                if k in metrics:
+                if k in metrics and isinstance(metrics[k], (int, float)):
                     metric_totals[k] += metrics[k]
                     metric_counts[k] += 1
                     
