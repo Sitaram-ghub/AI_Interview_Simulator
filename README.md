@@ -1,8 +1,8 @@
 # 🎙️ AI Interviewer - Asynchronous Mock Interview & Composure Analytics Platform
 
-[![Live Demo](https://img.shields.io/badge/Demo-Live%20on%20Render-brightgreen?style=for-the-badge&logo=render)](https://ai-interview-simulator-1-mgl5.onrender.com)
+[![Live Demo](https://img.shields.io/badge/Demo-Live%20on%20Render-brightgreen?style=for-the-badge&logo=render)](https://ai-interview-frontend-1950.onrender.com)
 
-**Live Demo Website:** [https://ai-interview-simulator-1-mgl5.onrender.com](https://ai-interview-simulator-1-mgl5.onrender.com)
+**Live Demo Website:** [https://ai-interview-frontend-1950.onrender.com](https://ai-interview-frontend-1950.onrender.com)
 
 AI Interviewer is a modern, full-stack mock interview platform designed to help developers prepare for tough technical and behavioral rounds. Unlike static Q&A tools that only check if your answer is technically correct, this platform looks at the whole picture—evaluating your verbal answers, physical composure, eye contact, and emotional state in real time.
 
